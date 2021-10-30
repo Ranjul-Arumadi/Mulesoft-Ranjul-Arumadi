@@ -83,4 +83,7 @@ $execute_query = mysqli_query($conn, $print_query);
 while($row = mysqli_fetch_array($execute_query)) {
     echo "</br>".$row[0]." ".$row[1]." ".$row[2]." ".$row[3]." ".$row[4]." ".$row[5]." "."</br>";
 }
+
+// closing the connection
+mysqli_close($conn);
 ?>
