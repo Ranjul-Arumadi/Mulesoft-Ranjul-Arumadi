@@ -1,0 +1,63 @@
+#saved at: https://anypoint.mulesoft.com/exchange/af865948-8af0-4a83-a81c-b3a53d00d71c/american-flights-api-3/
+#%RAML 1.0
+title: American Flights API 3
+#created on 2-12-21
+#Author: Ranjul Arumadi
+
+types:
+  #following has the datatype defined as a fragment which we include
+  AmericanFlight: !include /exchange_modules/68ef9520-24e9-4cf2-b2f5-620025690913/training-american-flight-data-type/1.0.1/AmericanFlightDataType.raml
+/flights:
+  get:
+    #query parameter added, we can also use URI parameters
+    queryParameters:
+      destination:
+        required: false
+        enum:
+          - SFO
+          - LAX
+          - CLE
+    responses:
+      200:
+        body:
+          application/json:
+            # returns as an array
+            type: AmericanFlight[]
+            examples:
+              #following has the example response, which we include 
+              # as a fragment in our spec
+              output: !include /exchange_modules/68ef9520-24e9-4cf2-b2f5-620025690913/training-american-flights-example/1.0.1/AmericanFlightsExample.raml
+  
+  post:
+    body:
+      application/json:
+        type: AmericanFlight
+        examples:
+          input: !include /examples/AmericanFlightNoIDExample.raml
+    responses:
+      201:
+        body:
+          application/json:
+            #american flight does not give access to insert so thats
+            example: flight added (but not really)
+    
+  /{ID}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: AmericanFlight
+              #the following fragment was imported to get example
+              examples: 
+                output: !include /examples/AmericanFlightExample.raml
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                message: Flight not really deleted
+        
+
+      
