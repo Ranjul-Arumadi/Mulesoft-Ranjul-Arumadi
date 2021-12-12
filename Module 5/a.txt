@@ -1,1 +1,4 @@
 Cloudhub deployed link: http://mod5-deploying-homework.us-e2.cloudhub.io/
+Test path for link: http://training4-american-ws-{lastname}.{region}.cloudhub.io/api/flights
+
+
